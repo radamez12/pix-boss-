@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="pt-br" class="notranslate" translate="no">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="google" content="notranslate">
+    <title>PIX-BOSS | Império</title>
+    
+    <style>
+        /* CSS BLINDADO - CARREGA NA HORA */
+        body { background: #050505; color: white; font-family: sans-serif; margin: 0; padding: 0; overflow-x: hidden; }
+        header { padding: 15px; border-bottom: 1px solid #222; background: #000; display: flex; justify-content: space-between; align-items: center; position: sticky; top: 0; z-index: 100; }
+        .neon-purple { color: #bc13fe; text-shadow: 0 0 10px #bc13fe; font-weight: 900; }
+        .aba { display: none; padding: 15px; text-align: center; padding-bottom: 150px; }
+        .ativa { display: block !important; }
+        footer { position: fixed; bottom: 0; width: 100%; max-width: 500px; background: #000; border-top: 1px solid #222; display: flex; justify-content: space-around; z-index: 1000; padding: 10px 0; }
+        .nav-tab { color: #444; font-size: 9px; font-weight: bold; text-align: center; flex: 1; cursor: pointer; }
+        .nav-active { color: #bc13fe !important; border-top: 2px solid #bc13fe; }
+        .glass { background: rgba(255, 255, 255, 0.03); border: 1px solid #333; border-radius: 25px; padding: 15px; margin-bottom: 15px; }
+        .bg-purple { background: linear-gradient(90deg, #bc13fe, #8a2be2); color: white; border-radius: 12px; padding: 15px; font-weight: bold; border: none; width: 100%; cursor: pointer; }
+        input { background: #111 !important; border: 1px solid #333 !important; color: white !important; width: 100%; padding: 12px; border-radius: 10px; margin-bottom: 10px; outline: none; text-align: center; box-sizing: border-box; }
+        .wheel { width: 180px; height: 180px; border-radius: 50%; border: 4px solid #bc13fe; margin: 20px auto; background: #111; display: flex; align-items: center; justify-content: center; font-size: 8px; opacity: 0.3; }
+    </style>
+
+    <script>
+        // NAVEGAÇÃO TURBO - NÃO TRAVA
+        function irPara(id) {
+            const abas = ['home', 'sorte', 'live', 'gems', 'gestao'];
+            abas.forEach(a => {
+                document.getElementById('tela-' + a).style.display = 'none';
+                document.getElementById('btn-' + a).classList.remove('nav-active');
+            });
+            document.getElementById('tela-' + id).style.display = 'block';
+            document.getElementById('btn-' + id).classList.add('nav-active');
+            window.scrollTo(0,0);
+        }
+    </script>
+</head>
+<body class="max-w-md mx-auto">
+
+    <!-- LOGIN / CADASTRO -->
+    <div id="login-gate" style="position: fixed; inset: 0; background: #000; z-index: 2000; padding: 30px; overflow-y: auto;">
+        <h1 class="neon-purple" style="font-size: 35px; text-align: center; margin-bottom: 30px;">PIX-BOSS</h1>
+        <div id="escolha" class="space-y-4">
+            <button onclick="f_cad('USUÁRIO')" class="bg-purple">ENTRAR COMO USUÁRIO</button>
+            <button onclick="f_cad('MODELO')" class="bg-purple" style="background:#fff; color:#000;">SOU MODELO / CRIADOR</button>
+            <button onclick="f_cad('EQUIPE')" style="background:none; border:none; color:#555; width:100%; font-size:10px; margin-top:20px; font-weight:bold;">ACESSO GESTÃO</button>
+        </div>
+        <div id="form-cad" style="display:none;" class="space-y-3 text-center">
+            <h2 id="titulo-cad" class="neon-purple"></h2>
+            <input id="in-apelido" type="text" placeholder="Seu apelido">
+            <input id="in-pass" type="password" placeholder="Sua senha">
+            <button onclick="document.getElementById('login-gate').style.display='none'; alert('Bem-vindo!')" class="bg-purple">FINALIZAR E ENTRAR</button>
+        </div>
+    </div>
+
+    <header>
+        <h1 class="neon-purple italic text-xl">PIX-BOSS</h1>
+        <div style="color:#ffcc00; font-weight:bold; font-size:12px;" id="s-topo">10 Gems</div>
+    </header>
+
+    <!-- TELA 1: HOME -->
+    <div id="tela-home" class="aba aba-ativa">
+        <h3 style="font-size:10px; color:#666;">FEED PREMIUM</h3>
+        <div class="glass" onclick="irPara('live')">
+            <p style="text-align:left; font-size:12px; font-weight:bold; margin-bottom:10px;">Leticia_Hot 🔞</p>
+            <img src="https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?auto=format&fit=crop&w=400" style="width:100%; border-radius:15px; filter: blur(15px); opacity:0.6;">
+            <button class="bg-purple" style="margin-top:10px; font-size:10px;">🔓 VER LIVE (10 GEMS)</button>
+        </div>
+    </div>
+
+    <!-- TELA 2: ROLETA -->
+    <div id="tela-sorte" class="aba">
+        <h2 class="neon-purple">ROLETA DA SORTE</h2>
+        <div class="wheel">5 | 30 | 250 | 10</div>
+        <button onclick="alert('Giro sem saldo')" class="bg-purple">GIRAR (15 GEMS)</button>
+    </div>
+
+    <!-- TELA 3: LIVE -->
+    <div id="tela-live" class="aba">
+        <div style="width:100%; height:300px; background:#000; border:1px solid #333; border-radius:30px; margin-bottom:15px; position:relative; overflow:hidden;">
+            <div id="agora-video" style="width:100%; height:100%;"></div>
+            <div style="position:absolute; top:10px; left:10px; background:red; font-size:8px; padding:2px 5px; font-weight:bold;">LIVE SEGURA</div>
+        </div>
+        <div style="display:grid; grid-template-cols: 1fr 1fr; gap:10px;">
+            <button onclick="alert('Ligue a câmera')" class="bg-purple" style="font-size:9px;">🎥 CÂMERA</button>
+            <button onclick="alert('Jogos On')" class="bg-purple" style="background:#ff4500; font-size:9px;">🎮 JOGOS</button>
+        </div>
+    </div>
+
+    <!-- TELA 4: SHOP -->
+    <div id="tela-gems" class="aba">
+        <h2 class="neon-purple">LOJA DE MOEDAS</h2>
+        <div style="display:grid; grid-template-cols: 1fr 1fr; gap:10px;" id="vitrine">
+            <!-- Gerado via Script -->
+        </div>
+        <div id="pix" style="display:none;" class="glass border-green-600 animate-pulse mt-4">
+            <p style="font-size:9px; color:#00ff00;">PIX PRESIDENTE:</p>
+            <p style="font-size:11px; margin:10px 0;">0f549cdb-6acb-4af9-bd96-890360d4cdf8</p>
+            <button onclick="window.open('https://wa.me/5567981251773')" class="bg-purple" style="background:#fff; color:#000; font-size:10px;">PAGUEI! LIBERAR GEMS</button>
+        </div>
+    </div>
+
+    <!-- TELA 5: GESTÃO -->
+    <div id="tela-gestao" class="aba">
+        <div id="log-adm">
+            <input id="e-adm" type="text" placeholder="E-mail Gestão">
+            <input id="s-adm" type="password" placeholder="Senha">
+            <button onclick="logar()" class="bg-purple">ENTRAR NO PAINEL</button>
+            <hr style="border:0; border-top:1px solid #111; margin:30px 0;">
+            <p onclick="alert('Pedido enviado!')" style="font-size:9px; color:#555; text-decoration:underline;">SOLICITAR SAQUE (MÍN. R$ 100)</p>
+        </div>
+        <div id="p-adm" style="display:none; text-align:left;">
+            <div class="glass" style="background:#bc13fe; padding:30px;">
+                <p style="font-size:9px; font-weight:bold;">ESTOQUE VITALÍCIO</p>
+                <h2 style="font-size:22px; font-weight:900;">100.000.000 GEMS</h2>
+            </div>
+            <div class="glass">
+                <input id="l-nick" type="text" placeholder="Apelido Cliente">
+                <button onclick="alert('Liberado!')" class="bg-purple" style="background:#28a745;">LIBERAR MOEDAS</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- NAVBAR -->
+    <footer>
+        <div id="btn-home" onclick="irPara('home')" class="nav-tab nav-active">🏠<br>Início</div>
+        <div id="btn-roulette" onclick="irPara('sorte')" class="nav-tab">🎡<br>Sorte</div>
+        <div id="btn-live" onclick="irPara('live')" class="nav-tab">🎥<br>Live</div>
+        <div id="btn-gems" onclick="irPara('gems')" class="nav-tab">💎<br>Gems</div>
+        <div id="btn-gestao" onclick="irPara('gestao')" class="nav-tab">👤<br>Gestão</div>
+    </footer>
+
+    <script src="https://download.agora.io/sdk/release/AgoraRTC_N-4.11.0.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2" defer></script>
+    <script>
+        function f_cad(t) {
+            document.getElementById('escolha').style.display='none';
+            document.getElementById('form-cad').style.display='block';
+            document.getElementById('titulo-cad').innerText = t;
+        }
+        function mudarAba(n) { irPara(n); }
+        function logar() {
+            if(document.getElementById('e-adm').value === "radamez1228@gmail.com") {
+                document.getElementById('log-adm').style.display='none';
+                document.getElementById('p-adm').style.display='block';
+                document.getElementById('s-topo').innerText = "PRESIDENTE";
+            }
+        }
+        // Gerar Loja
+        const v = document.getElementById('vitrine');
+        [5, 10, 15, 20, 25, 30, 40, 50, 100].forEach(n => {
+            v.innerHTML += `<div onclick="document.getElementById('pix').style.display='block'" class="glass" style="padding:10px; cursor:pointer;"><b>R$ ${n}</b></div>`;
+        });
+    </script>
+</body>
+  </html>
